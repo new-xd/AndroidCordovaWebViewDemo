@@ -150,6 +150,9 @@ public class MainActivity extends Activity {
         launchUrl = parser.getLaunchUrl();
         pluginEntries = parser.getPluginEntries();
         /*****************changed begin*******************/
+        // 内置白名单插件
+        PluginEntry object = new PluginEntry("whiltelist", new WhitelistPlugin(this));
+        pluginEntries.add(object);
         // 这个已经过时 不再使用 大胆的删掉
 //        Config.parser = parser;
         /*****************changed end*******************/

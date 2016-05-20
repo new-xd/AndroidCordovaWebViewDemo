@@ -55,3 +55,25 @@ CordovaLib是所依赖的cordova库，是随便从cordova项目中拷贝过来�
 
 demo为了做到最少改动，所以将CordovaActivity的实现直接copy过来了  
 对于熟悉cordova的开发者，可以自己选择实现内容和实现方法
+
+# 访问web站点上的页面
+访问web站点 是需要安装白名单插件的，但是通过命令安装需要做一些配置  
+为了方便使用，我把白名单插件内置到了代码里
+
+## 主要改动
+1. copy白名单插件源码
+2. 在MainActivity中内置白名单插件
+
+        /*****************changed begin*******************/
+        // 内置白名单插件
+        PluginEntry object = new PluginEntry("whiltelist", new WhitelistPlugin(this));
+        pluginEntries.add(object);
+        // 这个已经过时 不再使用 大胆的删掉
+        //        Config.parser = parser;
+        /*****************changed end*******************/
+
+3. 在AndroidManifest.xml中添加网络权限
+
+之后就可以修改config.xml啦，比如
+
+        <content src="https://www.baidu.com/" />
